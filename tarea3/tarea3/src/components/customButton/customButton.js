@@ -5,12 +5,12 @@ const CustomButton = ({ onPress, title, buttonStyle, textStyle, imageSource, ...
   const [showImage, setShowImage] = useState(false);
 
   const handleImagePress = () => {
-    setShowImage(false); // Oculta la imagen al presionarla
+    setShowImage(false); 
   };
 
   const handleButtonPress = () => {
-    setShowImage(true); // Muestra la imagen al presionar el botón
-    onPress(); // Llama a la función original onPress
+    setShowImage(true); 
+    onPress(); 
   };
 
   const windowWidth = Dimensions.get('window').width;
