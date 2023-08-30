@@ -8,5 +8,6 @@ export const THEME = {
         Light_Gray: '#F2F2F2',
         Dark_Green: '#0B610B',
         Dark_Blue: '#0B0B61',
+        Light_Green: '#ADFF2F',
     }
 };

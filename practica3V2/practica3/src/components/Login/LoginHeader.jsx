@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     
     justifyContent: 'center',
-    height: (windowHeight/3) ,
+    //height: (windowHeight/3) ,
+    height: 220,
     width: windowWidth,
   },
   text: {
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: 'white',
-    fontSize: 10,
+    fontSize: 16,
     paddingLeft: 20,
     paddingTop: 20,
   }

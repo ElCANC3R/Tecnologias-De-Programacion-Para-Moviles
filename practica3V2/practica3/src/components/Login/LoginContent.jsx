@@ -1,49 +1,41 @@
 
-import { StyleSheet, Text, View, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { THEME } from '../../theme/colors';
+import { facebookImage, googleImage } from '../../../assets';
+import ImageButton from '../images/imageComponent';
 
 export default function LoginContent() {
-
 
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <TextInput value="diejoruiz1993@gmaiul.com" />
-        <TextInput secureTextEntry={true} />
+        <TextInput style={styles.input} value="diejoruiz1993@gmail.com" />
+        <TextInput style={styles.input} secureTextEntry={true} />
         <Text style={styles.text} >Forgot your password?</Text>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <View style={{ FlexDirection: 'row', gap: 20 }}>
-          <View style={styles.line}>  </View>
-          <Text style={{ fontWeight: 'bold' }} >or login with</Text>
-          <View style={styles.line}>  </View>
+        <View style={{ flexDirection: 'row', gap: 20 }}>
+          <View style={styles.line}></View>
+          <Text style={{ fontWeight: 'bold' }}>or login with</Text>
+          <View style={styles.line}></View>
         </View>
+
         <View style={styles.buttons}>
-          <TouchableOpacity>
-            <Image style={styles.image} source={require('../../../assets/icon.png')} />
-            <Text>Google</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image style={styles.image} />
-            <Text>Facebook</Text>
-          </TouchableOpacity>
+          <ImageButton source={googleImage} texto="Google"></ImageButton>
+          <ImageButton source={facebookImage} texto="Facebook"></ImageButton>
+        </View>
+        <View style={{ flexDirection: 'row', paddingTop: 50, justifyContent: 'center' }}>
+          <Text style={{ fontWeight: 'bold' }}>Don't have an account?</Text>
+          <Text style={styles.text2} >Register</Text>
         </View>
       </View>
     </View>
   );
 }
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('screen').height;
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: (windowHeight / 3) * 2,
-    width: windowWidth,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
@@ -55,14 +47,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     height: 60,
+    paddingHorizontal: 40,
     borderColor: THEME.COLORS.Light_Gray,
     fontSize: 17,
-    font_WEIGHT: 'bold',
+    fontWeight: 'bold',
   },
   text: {
     color: THEME.COLORS.Light_Green,
     fontSize: 16,
-    font_WEIGHT: 'bold',
+    fontWeight: 'bold',
     textAlign: 'right',
   },
   button: {
@@ -80,19 +73,21 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomWidth: 1,
-    borderBottomColor: THEME.COLORS.Light_Gray,
+    borderBottomColor: 'gray',
+    flex: 1,
     marginBottom: 8,
 
   },
   buttons: {
-
+    flexDirection: 'row'
 
   },
-  
-  image: {
-    width: 50,
-    height: 50,
+  text2: {
+    color: THEME.COLORS.Light_Green,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    paddingLeft: 10,
   },
-
 
 });
