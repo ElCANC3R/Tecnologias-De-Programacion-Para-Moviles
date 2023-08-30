@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 40,
     paddingLeft: 20,
+    fontWeight: 'bold',
   },
   text2: {
     color: 'white',
