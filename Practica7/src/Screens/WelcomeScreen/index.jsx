@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { Ionicons, AntDesign, MaterialIcons, FontAwesome5   } from "@expo/vector-icons";
 import Card from "../../Components/Card";
 import SymptomCard from "../../Components/SymptomCard";
 import Therapist from "../../Components/Therapist";
@@ -121,12 +121,6 @@ const WelcomeScreen = () => {
         <Text style={styles.textHeader}>Popular therapist</Text>
         <Text style={{ color: "#d4d4d7", fontWeight: "bold" }}>See all</Text>
       </View>
-      <Therapist
-        image={IMAGE}
-        name="Dr. Alice Johnson"
-        job="Physiotherapist"
-        rate={5.0}
-      />
       <FlatList
         data={THERAPISTS}
         renderItem={({ item: { image, name, job, rate } }) => (
@@ -134,6 +128,12 @@ const WelcomeScreen = () => {
         )}
         keyExtractor={(item) => item.id.toString()}
       />
+      <View style={styles.footer}>
+      <MaterialIcons name="house" size={24} color="#3764c2" />
+      <MaterialIcons name="message" size={24} color="#3764c2" />
+      <AntDesign name="calendar" size={24} color="#3764c2" />
+      <Ionicons name="person-circle-outline" size={24} color="#3764c2" />
+      </View>
     </View>
   );
 };
@@ -174,4 +174,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  footer:{
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  }
 });

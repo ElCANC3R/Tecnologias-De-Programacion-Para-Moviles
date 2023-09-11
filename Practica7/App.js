@@ -9,6 +9,9 @@ import {
 import Constants from "expo-constants";
 import { AntDesign } from "@expo/vector-icons";
 import WelcomeScreen from "./src/Screens/WelcomeScreen/index";
+import Welcome from "./src/Screens/signIn/wellcome";
+import SignIn from "./src/Screens/signIn/signIn";
+import CreateAcount from "./src/Screens/signIn/createAcount";
 
 export default function App() {
   // console.log(Platform.OS);
@@ -17,7 +20,10 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
       {/* <Main /> */}
-      <WelcomeScreen />
+      {/*<WelcomeScreen />*/}
+      {/*<Welcome></Welcome>*/}
+      {/*<SignIn></SignIn>*/}
+      <CreateAcount></CreateAcount>
     </View>
   );
 }

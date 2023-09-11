@@ -27,13 +27,14 @@ export default Therapist;
 
 const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
-    // borderColor: "red",
+     //borderWidth: 1,
+     //borderColor: "red",
     borderRadius: 10,
     backgroundColor: "#f7f8fa",
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",    
+    alignItems: "center",
+    marginBottom: 10,    
   },
   image: {
     width: 60,
