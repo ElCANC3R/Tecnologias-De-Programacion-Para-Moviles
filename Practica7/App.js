@@ -1,3 +1,4 @@
+import React, {useState} from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -5,6 +6,7 @@ import {
   View,
   StatusBar as ReactStatus,
   Platform,
+  TocuchableOpacity,
 } from "react-native";
 import Constants from "expo-constants";
 import { AntDesign } from "@expo/vector-icons";
@@ -14,16 +16,19 @@ import SignIn from "./src/Screens/signIn/signIn";
 import CreateAcount from "./src/Screens/signIn/createAcount";
 
 export default function App() {
-  // console.log(Platform.OS);
+  const [state, setState] = useState(1);
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <TocuchableOpacity onPress={() => setState(state + 1)}>
+        <Text>Sumar valor</Text>
+      </TocuchableOpacity>
       {/* <Main /> */}
       {/*<WelcomeScreen />*/}
       {/*<Welcome></Welcome>*/}
       {/*<SignIn></SignIn>*/}
-      <CreateAcount></CreateAcount>
+      {/*<CreateAcount></CreateAcount>*/}
     </View>
   );
 }
