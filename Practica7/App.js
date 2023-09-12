@@ -14,21 +14,20 @@ import WelcomeScreen from "./src/Screens/WelcomeScreen/index";
 import Welcome from "./src/Screens/signIn/wellcome";
 import SignIn from "./src/Screens/signIn/signIn";
 import CreateAcount from "./src/Screens/signIn/createAcount";
+import Tarea10 from "./src/Screens/tarea10/tarea10";
 
 export default function App() {
   const [state, setState] = useState(1);
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      <TocuchableOpacity onPress={() => setState(state + 1)}>
-        <Text>Sumar valor</Text>
-      </TocuchableOpacity>
+      
       {/* <Main /> */}
       {/*<WelcomeScreen />*/}
       {/*<Welcome></Welcome>*/}
       {/*<SignIn></SignIn>*/}
       {/*<CreateAcount></CreateAcount>*/}
+      <Tarea10></Tarea10>
     </View>
   );
 }

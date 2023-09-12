@@ -1,18 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const CustomText = () => {
+
+//Un customText el cual recibe el texto, Bold, fontSize y color como props
+const CustomText = ({ text, bold, fontSize, color }) => {
   return (
-    <View>
-      <Text style={styles.android}>CustomText</Text>
-    </View>
+    <Text style={{ fontWeight: bold ? "bold" : "normal", fontSize: fontSize, color: color }}>
+      {text}
+    </Text>
   );
 };
 
 export default CustomText;
 
-const styles = StyleSheet.create({
-  android: {
-    color: "blue",
-  },
-});
