@@ -19,11 +19,24 @@ export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
 
-  handleAddTodo = () => {
+  const createAlert = (text) => {
+    Alert.alert("Error", text, [
+      {
+        text: "aceptar",
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel'
+      },
+    ]);
+  }
+
+  const handleAddTodo = () => {
     if (inputValue === "") {
-      Alert.alert("Error", "El campo no puede estar vacio");
-      return;
+      return createAlert("El campo esta vacio");
     }
+    if(todos.some(todo => todo.name.toLowerCase() === inputValue.toLowerCase)) {
+      return createAlert('Ya existe una tarea con ese nombre') 
+    }
+
     setTodos([
       ...todos,
       { id: todos.length + 1, name: inputValue, done: false },
@@ -31,20 +44,45 @@ export default function App() {
     setInputValue("");
   };
 
+  const handleDeleteTodo = (id) => {
+    const filteredArray = todos.filter(todo => todo.id !== id);
+    setTodos(filteredArray);
+  }
+
+  const handleCompeltedTodo = (id) => {
+    const mappedArray = todos.map(todo => {
+      if(todo.id === id) {
+        todo.done = !todo.done;
+        return ´{
+          ...todo,
+          isComplted
+        }
+      }
+      return todo;
+    }
+    );
+    setTodos(mappedArray);
+  }
+
+
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>Todo List</Text>
         <View style={styles.container2}>
           <TodoInput value={inputValue} onChangeText={setInputValue} />
-          <CustomButton text={"Add"} onPress={handleAddTodo} light={true} color={"#00AB02"}/>
+          <CustomButton text={"Add"} onPress={handleAddTodo} light={true} color={"#00AB02"} />
         </View>
       </View>
       <FlatList
         data={todos}
         keyExtractor={(item) => item.id}
-        renderItem={({ item: { name } }) => {
-          return <Todo name={name} />;
+        renderItem={({ item: {id, name } }) => {
+          return <Todo name={name}
+          id={id}
+          handleDelete={handleDeleteTodo}
+          handleComplete={handleCompeltedTodo} />;
         }}
       />
       <StatusBar style="auto" />
