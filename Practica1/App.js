@@ -18,6 +18,8 @@ import TodoInput from "./src/components/TodoInput";
 export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
+  const [editando, setEditando] = useState(false);
+  const [nombreEditando, setNombreEditando] = useState("");
 
   const createAlert = (text) => {
     Alert.alert("Error", text, [
@@ -36,11 +38,32 @@ export default function App() {
     if(todos.some(todo => todo.name.toLowerCase() === inputValue.toLowerCase)) {
       return createAlert('Ya existe una tarea con ese nombre') 
     }
+    const now = new Date();
+    const createdDate = now.toISOString();
 
-    setTodos([
-      ...todos,
-      { id: todos.length + 1, name: inputValue, done: false },
-    ]);
+    if(!editando) {
+      setTodos([
+        ...todos,
+        { id: todos.length + 1, 
+          name: inputValue, 
+          done: false, 
+          createdDate: createdDate,
+          edited: false 
+        },
+      ]);
+    }
+    else{
+      const newTodos = todos.map((todo) => {
+        if (todo.name === nombreEditando) {
+          todo.name = inputValue;
+          todo.createdDate = createdDate;
+          todo.edited = true;
+        }
+        return todo;
+      });
+      setTodos(newTodos);
+      setEditando(false);
+    }
     setInputValue("");
   };
 
@@ -50,39 +73,58 @@ export default function App() {
   }
 
   const handleCompeltedTodo = (id) => {
-    const mappedArray = todos.map(todo => {
-      if(todo.id === id) {
-        todo.done = !todo.done;
-        return ´{
-          ...todo,
-          isComplted
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        if(todo.done) {
+          todo.done = false;
+          
+        } else {
+          todo.done = true;
+         
         }
       }
       return todo;
-    }
-    );
-    setTodos(mappedArray);
+    });
+    
+    setTodos(newTodos);
   }
 
-
+  const handleEditTodo = (id) => {
+      if(editando) {
+        setEditando(false);
+        
+      }
+      else {
+        setEditando(true);
+        const filteredArray = todos.filter(todo => todo.id == id);
+        setNombreEditando(filteredArray[0].name);
+      }
+  }
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Todo List</Text>
+        <Text style={styles.title}>{editando ? nombreEditando: "Todo List" }</Text>
         <View style={styles.container2}>
           <TodoInput value={inputValue} onChangeText={setInputValue} />
-          <CustomButton text={"Add"} onPress={handleAddTodo} light={true} color={"#00AB02"} />
+          <CustomButton text={editando ? "Edit" : "Add"} onPress={handleAddTodo} light={true} color={"#00AB02"} />
         </View>
       </View>
       <FlatList
+        style={{ marginBottom: 18, marginTop: 10 }}
         data={todos}
         keyExtractor={(item) => item.id}
-        renderItem={({ item: {id, name } }) => {
+        renderItem={({ item: {id, name, done, createdDate, edited } }) => {
           return <Todo name={name}
           id={id}
           handleDelete={handleDeleteTodo}
-          handleComplete={handleCompeltedTodo} />;
+          handleComplete={handleCompeltedTodo} 
+          done={done}
+          createdDate={createdDate}
+          handleEditTodo={handleEditTodo}
+          edited={edited}
+          />;
+          
         }}
       />
       <StatusBar style="auto" />
@@ -98,6 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     // backgroundColor: "#98bcff",
     backgroundColor: "#E00302",
+    
   },
   title: {
     fontSize: 30,
