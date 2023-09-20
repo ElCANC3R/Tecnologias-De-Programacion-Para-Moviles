@@ -5,106 +5,29 @@ import {
   Text,
   View,
   StatusBar as ReactStatus,
-  TextInput,
-  TouchableOpacity,
   FlatList,
-  Alert,
 } from "react-native";
 import Todo from "./src/components/Todo";
-import { useState } from "react";
 import CustomButton from "./src/components/CustomButton";
 import TodoInput from "./src/components/TodoInput";
+import { useTodos } from "./src/hooks/useTodos";
+
 
 export default function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [editando, setEditando] = useState(false);
-  const [nombreEditando, setNombreEditando] = useState("");
-
-  const createAlert = (text) => {
-    Alert.alert("Error", text, [
-      {
-        text: "aceptar",
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel'
-      },
-    ]);
-  }
-
-  const handleAddTodo = () => {
-    if (inputValue === "") {
-      return createAlert("El campo esta vacio");
-    }
-    if(todos.some(todo => todo.name.toLowerCase() === inputValue.toLowerCase)) {
-      return createAlert('Ya existe una tarea con ese nombre') 
-    }
-    const now = new Date();
-    const createdDate = now.toISOString();
-
-    if(!editando) {
-      setTodos([
-        ...todos,
-        { id: todos.length + 1, 
-          name: inputValue, 
-          done: false, 
-          createdDate: createdDate,
-          edited: false 
-        },
-      ]);
-    }
-    else{
-      const newTodos = todos.map((todo) => {
-        if (todo.name === nombreEditando) {
-          todo.name = inputValue;
-          todo.createdDate = createdDate;
-          todo.edited = true;
-        }
-        return todo;
-      });
-      setTodos(newTodos);
-      setEditando(false);
-    }
-    setInputValue("");
-  };
-
-  const handleDeleteTodo = (id) => {
-    const filteredArray = todos.filter(todo => todo.id !== id);
-    setTodos(filteredArray);
-  }
-
-  const handleCompeltedTodo = (id) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        if(todo.done) {
-          todo.done = false;
-          
-        } else {
-          todo.done = true;
-         
-        }
-      }
-      return todo;
-    });
-    
-    setTodos(newTodos);
-  }
-
-  const handleEditTodo = (id) => {
-      if(editando) {
-        setEditando(false);
-        
-      }
-      else {
-        setEditando(true);
-        const filteredArray = todos.filter(todo => todo.id == id);
-        setNombreEditando(filteredArray[0].name);
-      }
-  }
+  const { inputValue,
+    setInputValue,
+    todos,
+    editando,
+    nombreEditando,
+    handleAddTodo,
+    handleDeleteTodo,
+    handleCompeltedTodo,
+    handleEditTodo } = useTodos();
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>{editando ? nombreEditando: "Todo List" }</Text>
+        <Text style={styles.title}>{editando ? "Editando tarea: "+nombreEditando: "Todo List" }</Text>
         <View style={styles.container2}>
           <TodoInput value={inputValue} onChangeText={setInputValue} />
           <CustomButton text={editando ? "Edit" : "Add"} onPress={handleAddTodo} light={true} color={"#00AB02"} />

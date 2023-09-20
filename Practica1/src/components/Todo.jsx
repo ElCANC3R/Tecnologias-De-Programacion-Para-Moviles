@@ -36,7 +36,7 @@ const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handl
       done && styles.todoCompleted]}>
       <ScrollView style={{direction: "horizontal"}}>
       <View>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{name}</Text>
+      <Text style={[{ fontSize: 20, fontWeight: "bold" }, done && styles.textCompleted]}>{name}</Text>
       {formatCreatedDate(createdDate)}
       </View>
       <View style={styles.containerBotones}>
@@ -83,5 +83,9 @@ styles = StyleSheet.create({
      gap: 10, 
      marginTop: 10,
      justifyContent: "space-evenly",
-  }
+  },
+  textCompleted: {
+    textDecorationLine: "line-through",
+    color: "white",
+  },
 });
