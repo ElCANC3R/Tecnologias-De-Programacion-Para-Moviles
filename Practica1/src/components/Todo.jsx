@@ -1,8 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomButton from "./CustomButton";
+import CustomButtonIcon from "./CustomButtonIcon";
 
-const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handleEditTodo, edited }) => {
+const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handleEditTodo, edited, handleModal }) => {
 
   const formatCreatedDate = (createdDate) => {
     const now = new Date();
@@ -10,9 +11,9 @@ const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handl
     const diffInDays = Math.floor(
       (now - taskDate) / (1000 * 60 * 60 * 24) // Diferencia en días
     );
-  
+
     let dateText = "";
-  
+
     if (diffInDays === 0) {
       dateText = `Today, ${taskDate.toLocaleTimeString()}`;
     } else if (diffInDays === 1) {
@@ -20,12 +21,12 @@ const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handl
     } else {
       dateText = `${taskDate.toLocaleDateString()}, ${taskDate.toLocaleTimeString()}`;
     }
-  
+
     // Si ha pasado más de 5 días, cambia el color a "corallight"
     if (diffInDays > 5) {
-      return <Text style={styles.corallight}>{edited ? "Edited " + dateText: dateText}</Text>;
+      return <Text style={styles.corallight}>{edited ? "Edited " + dateText : "Created "+dateText}</Text>;
     } else {
-      return <Text style={styles.date}>{edited ? "Edited " + dateText: dateText}</Text>;
+      return <Text style={styles.date}>{edited ? "Edited " + dateText : "Created "+dateText}</Text>;
     }
   };
 
@@ -34,16 +35,20 @@ const Todo = ({ id, name, handleDelete, handleComplete, done, createdDate, handl
     <View style={[
       styles.container,
       done && styles.todoCompleted]}>
-      <ScrollView style={{direction: "horizontal"}}>
-      <View>
-      <Text style={[{ fontSize: 20, fontWeight: "bold" }, done && styles.textCompleted]}>{name}</Text>
-      {formatCreatedDate(createdDate)}
-      </View>
-      <View style={styles.containerBotones}>
-        <CustomButton text={"Delete"} light={true} onPress={() => handleDelete(id)} color={"#0F96AB"} />
-        <CustomButton text={"Edit"} light={true} onPress={() => handleEditTodo(id)} color={"#23DBF7"} />
-        <CustomButton text={"Complete"} light={true} onPress={() => handleComplete(id)} color={"#FD6443"} />
-      </View>
+      <ScrollView style={{ direction: "horizontal" }}>
+        <View>
+          <Text style={[styles.text, done && styles.textCompleted]}>{name}</Text>
+          {formatCreatedDate(createdDate)}
+        </View>
+        <View style={styles.containerBotones}>
+          {/*<CustomButton text={"Complete"} light={true} onPress={() => handleComplete(id)} color={"#0F96AB"} />
+          <CustomButton text={"Edit"} light={true} onPress={() => handleEditTodo(id)} color={"#66D7D1"} />
+          <CustomButton text={"Delete"} light={true} onPress={() => handleDelete(id)} color={"#003B43"} /> */}
+          <CustomButtonIcon name={"checkcircleo"} onPress={() => handleComplete(id)} />
+          <CustomButtonIcon name={"edit"} onPress={() => handleEditTodo(id)} />
+          <CustomButtonIcon name={"delete"} onPress={() => handleDelete(id)} />
+          <CustomButtonIcon name={"eye"} onPress={() => handleModal(id)} />
+        </View>
       </ScrollView>
     </View>
   );
@@ -56,11 +61,11 @@ styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 30,
     justifyContent: "space-between",
-    // borderwidth: 1,
+    borderwidth: 1,
+    borderBlockColor: "black",
     padding: 10,
     borderRadius: 5,
-    // backgroundColor: "#2d7bdc",
-    backgroundColor: "#E002DD",
+    backgroundColor: "#2A3132",
   },
   name: {
     fontSize: 20,
@@ -76,16 +81,24 @@ styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
     borderRadius: 5,
-    backgroundColor: "#2d7bdc",
+    backgroundColor: "#07575B",
   },
   containerBotones: {
     flexDirection: "row",
-     gap: 10, 
-     marginTop: 10,
-     justifyContent: "space-evenly",
+    gap: 10,
+    marginTop: 10,
+    justifyContent: "space-evenly",
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
   },
   textCompleted: {
     textDecorationLine: "line-through",
+    color: "white",
+  },
+  date: {
     color: "white",
   },
 });
