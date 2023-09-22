@@ -6,8 +6,8 @@ import {
   StatusBar as ReactStatus,
 } from "react-native";
 import ListaTareas from "./src/components/Tarea2";
-import { useEffect } from "react";
-import CharactersScrean from "./src/components/CustomUseEffect";
+import Constants from 'expo-constants';
+import CharactersScrean from "./src/components/CharacterScrean.jsx";
 
 
 
@@ -17,7 +17,7 @@ export default function App() {
     <View style={styles.container}>
       <CharactersScrean></CharactersScrean>
       {/*<ListaTareas></ListaTareas>*/}
-      <StatusBar style="auto" />
+      <StatusBar style={{height: Constants.statusBarHeight}} />
     </View>
   );
 }
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingTop: ReactStatus.currentHeight,
     paddingHorizontal: 20,
     // backgroundColor: "#98bcff",
-    backgroundColor: "#90AFC5",
+    backgroundColor: "#1D2027",
 
   },
 });
