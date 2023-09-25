@@ -8,6 +8,7 @@ import {
 import ListaTareas from "./src/components/Tarea2";
 import Constants from 'expo-constants';
 import CharactersScrean from "./src/components/CharacterScrean.jsx";
+import NavegarPantallas from "./src/components/Screens/NavegarPantallas";
 
 
 
@@ -15,8 +16,9 @@ export default function App() {
 
   return (        
     <View style={styles.container}>
-      <CharactersScrean></CharactersScrean>
+      {/*<CharactersScrean></CharactersScrean>*/}
       {/*<ListaTareas></ListaTareas>*/}
+      <NavegarPantallas></NavegarPantallas>
       <StatusBar style={{height: Constants.statusBarHeight}} />
     </View>
   );

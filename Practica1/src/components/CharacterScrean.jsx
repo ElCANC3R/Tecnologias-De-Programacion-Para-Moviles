@@ -95,6 +95,21 @@ const CharactersScrean = () => {
             </View>
           );
         }}
+        ListHeaderComponent={() => {
+          return (
+            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
+          );
+        }}
+        ListFooterComponent={() => {
+          return (
+            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
+          );
+        }}
+        ListEmptyComponent={() => {
+          return (
+            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
+          );
+        }}
       />
     </View>
   );
