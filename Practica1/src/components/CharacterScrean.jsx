@@ -6,11 +6,12 @@ import {
   Text,
   FlatList,
   Image,
+  Button,
 } from "react-native";
 import CustomText from "./CustomText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const CharactersScrean = () => {
+const CharactersScrean = ({navigation}) => {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
@@ -90,26 +91,14 @@ const CharactersScrean = () => {
                     fontSize={15}
                     color={"#fff"}
                   />
+                  <Button style={styles.boton} title="Ver mas" onPress={() => navigation.navigate("Card",{item:item})}  />
                 </View>
               </View>
             </View>
           );
         }}
-        ListHeaderComponent={() => {
-          return (
-            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
-          );
-        }}
-        ListFooterComponent={() => {
-          return (
-            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
-          );
-        }}
-        ListEmptyComponent={() => {
-          return (
-            <View style={{ height: 100, backgroundColor: "#2E3133" }}></View>
-          );
-        }}
+       
+      
       />
     </View>
   );
@@ -128,7 +117,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 120,
-    height: 180,
+    height: 200,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
   },
@@ -139,5 +128,13 @@ const styles = StyleSheet.create({
   container3: {
     marginLeft: 10,
     gap: 5,
+  },
+  boton: {
+    width: 50,
+    height: 20,
+    backgroundColor: "#2E3133",
+    borderRadius: 10,
+    marginBottom: 20,
+    marginTop: 20,
   },
 });

@@ -6,52 +6,44 @@ import {
   Text,
   FlatList,
   Image,
+  Dimensions
 } from "react-native";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { createStackNavigator, NavigatorContainer, Navigator } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { HomeScreen} from "../Screens/HomeScreen";
+import { HomeScreen } from "../Screens/HomeScreen";
 import { LoginScreen } from "../Screens/LoginScreen";
+import CharactersScrean from "../CharacterScrean";
+import CharacterCard from "./Character";
 
 const Stack = createStackNavigator();
-const BottomsTabNavigator = createStackNavigator();
 
 const NavegarPantallas = () => {
   return (
-    <NavigatorContainer>
-        <View>
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-        </Stack.Navigator>
-        </View>
-    </NavigatorContainer>
+    <NavigationContainer>
+    <SafeAreaView style={styles.container}>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={CharactersScrean} />
+        <Stack.Screen name="Card" component={CharacterCard} />
+      </Stack.Navigator>
+    </SafeAreaView>
+  </NavigationContainer>
   );
 };
 
 export default NavegarPantallas;
 
+
 const styles = StyleSheet.create({
-  container1: {
-    flexDirection: "row",
-    justifyContent: "start",
-    alignItems: "center",
-    backgroundColor: "#2E3133",
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  image: {
-    width: 120,
-    height: 180,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  container2: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  container3: {
-    marginLeft: 10,
-    gap: 5,
+  container: {
+    // flex: 1,
+    // backgroundColor: "#aa76ff",
+    // alignItems: "center",
+    // justifyContent: "center",
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height,
+    // paddingTop: ReactStatus.currentHeight,
   },
 });
