@@ -34,7 +34,7 @@ const NavegarPantallas = () => {
           headerTitleStyle: {
             fontWeight: "bold",
           },
-          headerShadow: false,
+          headerShown: false,
 
         }
       }

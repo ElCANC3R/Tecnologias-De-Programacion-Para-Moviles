@@ -7,20 +7,25 @@ import {
   FlatList,
   Image,
   Button,
+  Switch,
+  ActivityIndicator,
 } from "react-native";
+import { useState } from "react";
 import CustomText from "../CustomText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CustomHeader from "../CustomHeader";
 
 
 const CharacterCard = ({ navigation, route }) => {
+  const [isEnable, setIsEnable] = useState(false);
+  const toggleSwitch = () => setIsEnable(previousState => !previousState);
   const { item } = route.params;
   const { canGoBack, goBack } = navigation;
   console.log(item.location);
   return (
-    
+
     <View style={styles.container1}>
-      
+
       <View>
         <Image source={{ uri: item.image }} style={styles.image} />
       </View>
@@ -110,7 +115,9 @@ const CharacterCard = ({ navigation, route }) => {
             color={"#fff"}
           />
         </View>
-        <Button style={styles.boton} disabled={!canGoBack} title="Volver" onPress={() => goBack()} />
+        <ActivityIndicator size="large" color="#00ff00" />
+        {isEnable ? <Button style={styles.boton} disabled={!canGoBack} title="Volver" onPress={() => goBack()} /> : <CustomText texto="Deshabilitado" fontSize={15} color={"#fff"} />}
+        <Switch value={isEnable} onValueChange={toggleSwitch} style={{transform: [{scaleX: 2}, {scaleY: 2}]}} />
       </View>
     </View>
   );
