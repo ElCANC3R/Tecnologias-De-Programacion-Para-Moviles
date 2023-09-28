@@ -24,9 +24,23 @@ const NavegarPantallas = () => {
   return (
     <NavigationContainer>
     <SafeAreaView style={styles.container}>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Home"
+      screenOptions={
+        {
+          headerStyle: {
+            backgroundColor: "#aa76ff",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerShadow: false,
+
+        }
+      }
+      >
         <Stack.Screen name="Home" component={CharactersScrean} />
-        <Stack.Screen name="Card" component={CharacterCard} />
+        <Stack.Screen name="Card" component={CharacterCard} options={{title: "Personaje"}} />
       </Stack.Navigator>
     </SafeAreaView>
   </NavigationContainer>

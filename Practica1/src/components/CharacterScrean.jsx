@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import CustomText from "./CustomText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CustomHeader from "./CustomHeader";
 
-const CharactersScrean = ({navigation}) => {
+const CharactersScrean = ({ navigation }) => {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const CharactersScrean = ({navigation}) => {
 
   return (
     <View>
+      <CustomHeader />
       <FlatList
         data={characters}
         keyExtractor={(item) => item.id}
@@ -57,8 +59,8 @@ const CharactersScrean = ({navigation}) => {
                       item.status === "Alive"
                         ? "green"
                         : item.status === "Dead"
-                        ? "red"
-                        : "gray"
+                          ? "red"
+                          : "gray"
                     }
                     style={{ marginRight: 5 }}
                   />
@@ -91,14 +93,14 @@ const CharactersScrean = ({navigation}) => {
                     fontSize={15}
                     color={"#fff"}
                   />
-                  <Button style={styles.boton} title="Ver mas" onPress={() => navigation.navigate("Card",{item:item})}  />
+                  <Button style={styles.boton} title="Ver mas" onPress={() => navigation.navigate("Card", { item: item })} />
                 </View>
               </View>
             </View>
           );
         }}
-       
-      
+
+
       />
     </View>
   );
