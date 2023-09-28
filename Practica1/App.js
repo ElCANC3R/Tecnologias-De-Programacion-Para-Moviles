@@ -29,9 +29,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get("screen").width,
     height: Dimensions.get("screen").height,
     paddingTop: ReactStatus.currentHeight,
-    paddingHorizontal: 20,
+    
     // backgroundColor: "#98bcff",
-    backgroundColor: "#1D2027",
 
   },
 });
