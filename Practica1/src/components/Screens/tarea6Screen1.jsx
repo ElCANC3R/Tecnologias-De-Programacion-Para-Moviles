@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
     StyleSheet,
@@ -13,119 +14,63 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CustomHeader from "../CustomHeader";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-const Screen1 = ({ navigation }) => {
+const Screen2 = ({ navigation }) => {
     const { canGoBack, goBack } = navigation;
     return (
-        <View style={{ justifyContent: "center", backgroundColor: "#337049" }}>
-            <View>
-                <CustomHeader></CustomHeader>
+        <View style={styles.container}>
+
+            <View style={styles.containerTodo}>
+
+                <CustomText texto="Play and Win!" fontSize={45} color={"white"} bold={true} />
+                <CustomText texto="Game for any one who likes to try" fontSize={15} color={"white"} bold={false} />
+                <CustomText texto="Luck at guessing numbers" fontSize={15} color={"white"} bold={false} />
             </View>
-            <CustomText texto="UroMillions" fontSize={25} color={"black"} bold={true} />
-            <View style={styles.container1}>
-                <AntDesign name="calendar" size={24} color="black" />
-                <CustomText texto="Today" fontSize={25} color={"black"} bold={true} />
-                <AntDesign name="clockcircleo" size={24} color="black" />
-                <CustomText texto="Today" fontSize={25} color={"black"} bold={true} />
-            </View>
-            <View style={styles.container2}>
-                <View style={styles.container1}>
-                    <CustomText texto="Today" fontSize={25} color={"black"} bold={true} />
-                    <Ionicons name="reload" size={24} color="black" />
-                </View>
-                <View style={styles.container1}>
-                    <View style={styles.circles}>
-                        <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                    </View>
-                    <View style={styles.circles}>
-                        <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                    </View>
-                    <View style={styles.circles}>
-                        <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                    </View>
-                    <View style={styles.circles}>
-                        <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                    </View>
-                    <View style={styles.circles}>
-                        <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                    </View>
-                </View>
-            </View>
-            <View style={styles.container1}>
-                <View style={styles.square}>
-                    <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                </View>
-                <View style={styles.square}>
-                    <CustomText texto="1" fontSize={25} color={"black"} bold={true} />
-                </View>
-            </View>
-            <TouchableOpacity onPress={() => goBack()} disabled={!canGoBack}>
-                <View>
-                    <CustomText texto="Watch Results-" fontSize={25} color={"black"} bold={true} />
+            <Image source={require("../../../assets/foto.png")} style={styles.image} />
+            <TouchableOpacity onPress={() => navigation.navigate("Pantalla2")}>
+                <View style={styles.Touchable}>
+                    <CustomText
+                        texto="Get Started"
+                        fontSize={20}
+                        color={"white"}
+                        bold={true}
+                    />
                 </View>
             </TouchableOpacity>
         </View>
     );
 };
 
-export default Screen1;
-
+export default Screen2;
 
 const styles = StyleSheet.create({
-    container1: {
-        flexDirection: "row",
-        justifyContent: "space-evenly",
+    container: {
+        justifyContent: "start",
         alignItems: "center",
-        backgroundColor: "#2E3133",
-        borderRadius: 10,
-        marginBottom: 20,
-        width: 150
+        backgroundColor: "#016F48",
+        height: "100%",
     },
-    container2: {
-        flexDirection: "row",
+    containerTodo: {
         justifyContent: "space-evenly",
         alignItems: "center",
-        backgroundColor: "#ECDCC2",
-        borderRadius: 10,
-        marginBottom: 5,
+        backgroundColor: "#016F48",
+        borderRadius: 20,
+        marginBottom: 35,
+        marginTop: 50,
+        width: 350,
     },
     image: {
-        width: 120,
-        height: 250,
+        width: 360,
+        height: 360 ,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-    },
-    container2: {
-        flexDirection: "row",
+    },  
+    Touchable: {
+        backgroundColor: "#F7793C",
+        borderRadius: 40,
+        marginTop: 150,
+        width: 250,
+        height: 80,
+        justifyContent: "center",
         alignItems: "center",
     },
-    container3: {
-        marginLeft: 10,
-        gap: 5,
-    },
-    boton: {
-        width: 100,
-        height: 30,
-        backgroundColor: "#2E3133",
-        borderRadius: 10,
-        marginBottom: 20,
-        marginTop: 20,
-    },
-    circles: {
-        borderRadius: 50,
-        width: 35,
-        height: 35,
-        justifyContent: "center",
-        alignContent: "center",
-        alignContent: "center",
-        backgroundColor: "#F6D439"
-    },
-    square: {
-        borderRadius: 10,
-        width: "50%",
-        height: 250,
-        justifyContent: "center",
-        alignContent: "center",
-        alignContent: "center"
-    }
 });

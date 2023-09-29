@@ -2,9 +2,9 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 
-const CustomText = ({texto ,fontSize, color, bold  }) => {
+const CustomText = ({texto ,fontSize, color, bold, textAlign  }) => {
     return (
-        <Text style={[styles.text, {fontSize: fontSize, color: color, fontWeight: bold ? "bold" : "normal"}]}>{texto}</Text>
+        <Text style={[styles.text, {fontSize: fontSize, color: color, fontWeight: bold ? "bold" : "normal", textAlign: textAlign}]}>{texto}</Text>
     );
     };
 
