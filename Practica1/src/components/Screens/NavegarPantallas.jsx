@@ -17,6 +17,8 @@ import { HomeScreen } from "../Screens/HomeScreen";
 import { LoginScreen } from "../Screens/LoginScreen";
 import CharactersScrean from "../CharacterScrean";
 import CharacterCard from "./Character";
+import ProductosList from "./ProductosList";
+import ProductCard from "./ProductoCard";
 
 const Stack = createStackNavigator();
 
@@ -39,8 +41,8 @@ const NavegarPantallas = () => {
         }
       }
       >
-        <Stack.Screen name="Home" component={CharactersScrean} />
-        <Stack.Screen name="Card" component={CharacterCard} options={{title: "Personaje"}} />
+        <Stack.Screen name="Home" component={ProductosList} />
+        <Stack.Screen name="Card" component={ProductCard} options={{title: "Producto"}} />
       </Stack.Navigator>
     </SafeAreaView>
   </NavigationContainer>
