@@ -4,11 +4,13 @@ import {
   StyleSheet,
   View,
   StatusBar as ReactStatus,
+  SafeAreaView,
 } from "react-native";
 import ListaTareas from "./src/components/Tarea2";
 import Constants from 'expo-constants';
 import CharactersScrean from "./src/components/CharacterScrean.jsx";
 import NavegarPantallas from "./src/components/Screens/NavegarPantallas";
+import AppContextProvider from "./src/components/context/AppContext";
 
 
 
@@ -18,7 +20,12 @@ export default function App() {
     <View style={styles.container}>
       {/*<CharactersScrean></CharactersScrean>*/}
       {/*<ListaTareas></ListaTareas>*/}
-      <NavegarPantallas></NavegarPantallas>
+      {/*<NavegarPantallas></NavegarPantallas>*/}
+      <AppContextProvider>
+        <SafeAreaView >
+          <CustomnCard></CustomnCard>
+        </SafeAreaView>
+      </AppContextProvider>
       <StatusBar style={{height: Constants.statusBarHeight}} />
     </View>
   );
