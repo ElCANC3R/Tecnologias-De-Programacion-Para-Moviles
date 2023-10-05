@@ -10,7 +10,7 @@ const ScreenTeclado = () => {
     const { handleActive, isActive } = useAppContext();
     return (
         <View style={[styles.container, {backgroundColor:isActive ? "black" :"white"}]}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: "center", marginTop:15 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: "center", marginTop:10 }}>
                 <View style={styles.cuadrado}>
                     <Entypo name="arrow-bold-left" size={30} color={isActive ? "white": "black"} />
                 </View>
@@ -22,12 +22,12 @@ const ScreenTeclado = () => {
                 </TouchableOpacity>
             </View>
             <View style={{ justifyContent: 'space-between', paddingHorizontal: 20, alignItems: "center", marginTop: 10 }}>
-                <Image source={require('../../../../assets/Diego_vieja.png')} style={{ width: 80, height: 80, marginTop: 20, borderRadius: 50 }} />
+                <Image source={require('../../../../assets/Diego_vieja.png')} style={{ width: 80, height: 80, marginTop: 15, borderRadius: 50 }} />
                 <Text style={{ color:isActive ? 'white' : "black", fontSize: 20 }}>Diega Ruiz Ayala</Text>
                 <Text style={{ color: 'gray', fontSize: 15 }}>****** 3294</Text>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={{color:isActive ? 'white' : "black", fontSize: 55, marginTop: 20, marginBottom:35 }}>$340</Text>
-                    <Text style={{ color: 'gray', fontSize: 55, marginTop: 20 }}>.00</Text>
+                    <Text style={{color:isActive ? 'white' : "black", fontSize: 55, marginTop: 10, marginBottom:20 }}>$340</Text>
+                    <Text style={{ color: 'gray', fontSize: 55, marginTop: 10 }}>.00</Text>
                 </View>
             </View>
             <View>
@@ -37,7 +37,7 @@ const ScreenTeclado = () => {
             <FilaTeclas texto1="<" texto2="0" texto3="." />
             </View>
             <TouchableOpacity>
-                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#FEFF64', height: 60, marginHorizontal: 20, borderRadius: 25, marginTop: 30 }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#FEFF64', height: 60, marginHorizontal: 20, borderRadius: 25, marginTop: 20 }}>
                     <CustomText fontSize={20} color="black" bold={true} text="Send" />
                 </View>
             </TouchableOpacity>

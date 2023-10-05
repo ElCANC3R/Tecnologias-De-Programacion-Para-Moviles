@@ -1,59 +1,46 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { MaterialCommunityIcons } from "react-native-vector-icons";
+import { MaterialCommunityIcons, Ionicons } from "react-native-vector-icons";
+import { Text, SafeAreaView } from "react-native"; // Añadimos la importación de Text
+import { NavigationContainer } from "@react-navigation/native";
 import ScreenTeclado from "./ScreenTeclado";
 import Screen2 from "./Screen2";
 import Screen3 from "./Screen3";
-import { SafeAreaView } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { useAppContext } from "../../../hooks/useAppContext";
 const Tab = createMaterialBottomTabNavigator();
 
 const Navegador = () => {
+  const { handleActive, isActive } = useAppContext();
+
   return (
-    <SafeAreaView>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Feed"
-          activeColor="#e91e63"
-          barStyle={{ backgroundColor: "tomato" }}
+          initialRouteName="Pantalla1"
+          activeColor="#000000"
+          inactiveColor={isActive ? "#C7C7C7" : "#1F1F1F"}
+          shifting={false}
+          labeled={false}
+          backBehavior="history"
+          barStyle={{ backgroundColor:isActive ? "#1F1F1F" : "#E6E6E6",
+                      height: 30, 
+                      justifyContent: "center",
+                      alignItems: "center",
+                      alignContent: "center",
+                      paddingBottom: 25,}}
         >
           <Tab.Screen
-            name="Feed"
-            component={ScreenTeclado}
-            options={{
-              tabBarLabel: ({ focused }) => (
-                <Text style={{ color: focused ? "#e91e63" : "gray" }}>
-                  Home
-                </Text>
-              ),
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="home" color={color} size={26} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Notifications"
+            name="Pantalla1"
             component={Screen2}
             options={{
-              tabBarLabel: ({ focused }) => (
-                <Text style={{ color: focused ? "#e91e63" : "gray" }}>
-                  Updates
-                </Text>
-              ),
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="bell" color={color} size={26} />
               ),
             }}
           />
           <Tab.Screen
-            name="Profile"
+            name="Pantalla2"
             component={Screen3}
             options={{
-              tabBarLabel: ({ focused }) => (
-                <Text style={{ color: focused ? "#e91e63" : "gray" }}>
-                  Profile
-                </Text>
-              ),
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons
                   name="account"
@@ -63,9 +50,17 @@ const Navegador = () => {
               ),
             }}
           />
+          <Tab.Screen
+            name="Pantalla3"
+            component={ScreenTeclado}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="calculator" size={24} color={color} />
+              ),
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
   );
 };
 

@@ -9,7 +9,7 @@ export default function App() {
   return (
     <AppContextProvider>
         <View style={styles.container}>
-          <ScreenTeclado />
+          <Navegador />
           <StatusBar style="auto" />
         </View>
      
