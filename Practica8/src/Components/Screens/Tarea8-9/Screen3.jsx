@@ -37,11 +37,11 @@ const Screen3 = () => {
                         <CustomText fontSize={15} color={"gray"} bold={false} text="See All" />
                     </View>
                     <Transaccion Nombre="Diego Ruiz Ayala" fecha="October 4, 2023" cantidad="340" pago={true} />
-                    <Transaccion Nombre="Alan Garcia Diaz" fecha="October 4, 2023" cantidad="340" pago={false} />
-                    <Transaccion Nombre="Diego Ruiz Ayala" fecha="October 4, 2023" cantidad="340" pago={true} />
-                    <Transaccion Nombre="Diego Ruiz Ayala" fecha="October 4, 2023" cantidad="340" pago={false} />
-                    <Transaccion Nombre="Diego Ruiz Ayala" fecha="October 4, 2023" cantidad="340" pago={true} />
-                    <Transaccion Nombre="Diego Ruiz Ayala" fecha="October 4, 2023" cantidad="340" pago={false} />
+                    <Transaccion Nombre="Alan Garcia Diaz" fecha="October 4, 2023" cantidad="1475" pago={false} />
+                    <Transaccion Nombre="Ulises Responsabilidad Rojas" fecha="October 4, 2023" cantidad="200" pago={true} />
+                    <Transaccion Nombre="Arturo Fuentes Martines" fecha="October 4, 2023" cantidad="364" pago={false} />
+                    <Transaccion Nombre="Juan Pablo Juares Castillo" fecha="October 4, 2023" cantidad="805" pago={true} />
+                    <Transaccion Nombre="Hector David Reyes Reyes" fecha="October 4, 2023" cantidad="999" pago={false} />
                 </View>
             </ScrollView>
            
