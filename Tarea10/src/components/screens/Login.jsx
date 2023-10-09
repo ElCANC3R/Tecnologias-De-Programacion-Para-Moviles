@@ -19,11 +19,11 @@ const Login = ({navigation}) => {
             <Image style={styles.image} source={require('../../../assets/vash.png')} />
             <View style={styles.textContainer}>
                 <View style={{ marginBottom: 20 }}>
-                    <CustomText text="Login!" fontSize={40} color="#4D5C7F" bold={true} textAling={""} />
+                    <CustomText text="Login!" fontSize={40} color="#4D5C7F" bold={true} />
                 </View>
-                <CustomText text="Email" fontSize={20} color="#4D5C7F" bold={true} textAling={""} />
+                <CustomText text="Email" fontSize={20} color="#4D5C7F" bold={true} />
                 <TextInput style={styles.input} placeholder='Enter your email' onChangeText={setUseName} />
-                <CustomText text="Password" fontSize={20} color="#4D5C7F" bold={true} textAling={""} />
+                <CustomText text="Password" fontSize={20} color="#4D5C7F" bold={true} />
                 <View style={styles.rowContainer}>
                     <TextInput style={styles.input2} placeholder='Enter your password' secureTextEntry={true} onChangeText={setPassword} />
                     <TouchableOpacity>

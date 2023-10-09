@@ -16,7 +16,7 @@ const NavigateScreen = () => {
                 initialRouteName="Home"
                 backBehavior='history'
                 screenOptions={{
-                    tabBarActiveTintColor: '#e91e63',
+                    tabBarActiveTintColor: '#55AFB1',
                     headerShown: false,
                 }}
             >

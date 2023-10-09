@@ -23,7 +23,7 @@ const SingUp = ({ navigation }) => {
             </View>
             <View style={styles.textContainer}>
                 <View style={{ marginBottom: 20 }}>
-                    <CustomText text="Sing Up!" fontSize={40} color="#4D5C7F" bold={true} textAling={""} />
+                    <CustomText text="Sing Up!" fontSize={40} color="#4D5C7F" bold={true} />
                     <View style={{ marginTop: 5, flexDirection: "row",  }}>
                         <CustomText text="Already have an account?" fontSize={17} color="#4D5C7F" bold={false} textAling={"justify"} />
                         <TouchableOpacity style={{ marginLeft: 5 }} onPress={handleNavigate}>
@@ -31,11 +31,11 @@ const SingUp = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <CustomText text="Name" fontSize={20} color="#4D5C7F" bold={true} textAling={""} />
+                <CustomText text="Name" fontSize={20} color="#4D5C7F" bold={true} />
                 <TextInput style={styles.input} placeholder='Enter your name' onChangeText={setUseName} />
-                <CustomText text="Email" fontSize={20} color="#4D5C7F" bold={true} textAling={""} />
+                <CustomText text="Email" fontSize={20} color="#4D5C7F" bold={true} />
                 <TextInput style={styles.input} placeholder='Enter your email' onChangeText={setUseName} />
-                <CustomText text="Password" fontSize={20} color="#4D5C7F" bold={true} textAling={""} />
+                <CustomText text="Password" fontSize={20} color="#4D5C7F" bold={true} />
                 <View style={styles.rowContainer}>
                     <TextInput style={styles.input2} placeholder='Enter your password' secureTextEntry={true} onChangeText={setPassword} />
                     <TouchableOpacity>
@@ -50,16 +50,16 @@ const SingUp = ({ navigation }) => {
                 <View style={{ marginTop: 20, flexDirection: "row", justifyContent: "flex-start" }}>
                     <CustomText text="By singninguo you are agreeing to our " fontSize={14} color="#4D5C7F" bold={false} textAling={"justify"} />
                     <TouchableOpacity>
-                        <CustomText text="Terms of" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} textDecorationLine={""} />
+                        <CustomText text="Terms of" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} />
                     </TouchableOpacity>
                 </View>
                 <View style={{flexDirection: "row", justifyContent: "flex-start" }}>
                     <TouchableOpacity>
-                        <CustomText text="services" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} textDecorationLine={""} />
+                        <CustomText text="services" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} />
                     </TouchableOpacity>
                     <CustomText text=" and  " fontSize={14} color="#4D5C7F" bold={false} textAling={"justify"} />
                     <TouchableOpacity>
-                        <CustomText text="Privacy Policy" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} textDecorationLine={""} />
+                        <CustomText text="Privacy Policy" fontSize={14} color="#55AFB1" bold={false} textAling={"justify"} />
                     </TouchableOpacity>
                 </View>
             </View>
