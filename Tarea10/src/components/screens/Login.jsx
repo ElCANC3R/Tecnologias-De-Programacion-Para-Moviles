@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Image, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
-import Constants from "expo-constants";
+import { Alert, Image, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import CustomText from '../CustomText';
 import { Fontisto } from '@expo/vector-icons';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 
 const Login = ({navigation}) => {
@@ -10,9 +10,25 @@ const Login = ({navigation}) => {
     const handleNavigate = () => {
         navigation.navigate("SingUp");
     }
-
-    const [useName, setUseName] = useState('')
+    const { user, handleLogin, handleRegister, handleLogout, isLogged } = useAuthContext();
+    const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleUsername = (text) => {
+        setUserName(text);
+      };
+      const handlePassword = (text) => {
+        setPassword(text);
+      };
+
+      const handleLocalLogin = () => {
+        const loginResponse = handleLogin(userName, password);
+        if (loginResponse) {
+          navigation.navigate("Home");
+        } else {
+          Alert.alert("Error", "Invalid credentials");
+        }
+      };
 
     return (
         <View style={styles.container}>
@@ -22,10 +38,10 @@ const Login = ({navigation}) => {
                     <CustomText text="Login!" fontSize={40} color="#4D5C7F" bold={true} />
                 </View>
                 <CustomText text="Email" fontSize={20} color="#4D5C7F" bold={true} />
-                <TextInput style={styles.input} placeholder='Enter your email' onChangeText={setUseName} />
+                <TextInput style={styles.input} placeholder='Enter your username' onChangeText={handleUsername} value={userName}/>
                 <CustomText text="Password" fontSize={20} color="#4D5C7F" bold={true} />
                 <View style={styles.rowContainer}>
-                    <TextInput style={styles.input2} placeholder='Enter your password' secureTextEntry={true} onChangeText={setPassword} />
+                    <TextInput style={styles.input2} placeholder='Enter your password' secureTextEntry={true} onChangeText={handlePassword} value={password} />
                     <TouchableOpacity>
                         <Fontisto name="eye" size={20} color="gray" />
                     </TouchableOpacity>
@@ -33,7 +49,7 @@ const Login = ({navigation}) => {
                 <TouchableOpacity >
                     <CustomText text="Forgot Password?" fontSize={15} color="orange" bold={false} textAling={"right"} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleLocalLogin}>
                     <View style={styles.boton}>
                         <CustomText text="Login" fontSize={20} color="white" bold={true} textAling={"center"} />
                     </View>

@@ -7,30 +7,40 @@ import SingUp from './SingUp';
 import EstoyDentro from './EstoyDentro';
 import { MaterialCommunityIcons, Entypo, FontAwesome5, AntDesign } from '@expo/vector-icons';
 import EstoyDentroNavigator from './EstoyDentroNavigator';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Tab = createBottomTabNavigator();
 
 const NavigateScreen = () => {
-    return (
-        <NavigationContainer>
-            <Tab.Navigator
-                initialRouteName="Home"
-                backBehavior='history'
-                screenOptions={{
-                    tabBarActiveTintColor: '#55AFB1',
-                    headerShown: false,
-                }}
-            >
+    const {user,
+        handleLogin,
+        handleRegister,
+        handleLogout,
+        isLogged,
+        handleUpdate,} = useAuthContext();
+
+    //Una funcion que cuando el usaurio este logeado, se muestre el tab de EstoyDentro y se oculte la de login y singup
+    
+    const handlePestañas = () => {
+        if(isLogged){
+            return (
+                <>
                 <Tab.Screen
-                    name="Home"
-                    component={Home}
+                    name="Dentro"
+                    component={EstoyDentroNavigator}
                     options={{
-                        tabBarLabel: 'Home',
+                        tabBarLabel: 'Estas dentro',
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={size} />
+                            <AntDesign name="dingding" color={color} size={size} />
                         ),
                     }}
                 />
+                </>
+            )
+        }
+        else{
+            return (
+                <>
                 <Tab.Screen
                     name="Login"
                     component={Login}
@@ -51,16 +61,32 @@ const NavigateScreen = () => {
                         ),
                     }}
                 />
+                </>
+            )
+        }
+    }
+
+    return (
+        <NavigationContainer>
+            <Tab.Navigator
+                initialRouteName="Home"
+                backBehavior='history'
+                screenOptions={{
+                    tabBarActiveTintColor: '#55AFB1',
+                    headerShown: false,
+                }}
+            >
                 <Tab.Screen
-                    name="Dentro"
-                    component={EstoyDentroNavigator}
+                    name="Home"
+                    component={Home}
                     options={{
-                        tabBarLabel: 'Estas dentro',
+                        tabBarLabel: 'Home',
                         tabBarIcon: ({ color, size }) => (
-                            <AntDesign name="dingding" color={color} size={size} />
+                            <MaterialCommunityIcons name="home" color={color} size={size} />
                         ),
                     }}
                 />
+                {handlePestañas()}
             </Tab.Navigator>
         </NavigationContainer>
     )
