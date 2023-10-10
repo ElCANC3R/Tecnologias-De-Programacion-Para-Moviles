@@ -24,10 +24,10 @@ const Home = ({ navigation }) => {
                 <CustomText text="Shopping with the best e-commerce store" fontSize={32} color="black" bold={true} textAling={"center"} />
                 <CustomText text="La luna llena sobre Paris, a transformado en hombre a Denise" fontSize={20} color="gray" bold={false} textAling={"center"} />
             </View>
-            {isLogged ? (<View></View>) :
+            {isLogged() ? (<View></View>) :
                 (
             
-                    <TouchableOpacity onPress={handleNavigate} style={{ paddingHorizontal: 20 }} disabled >
+                    <TouchableOpacity onPress={handleNavigate} style={{ paddingHorizontal: 20 }} >
                         <View style={styles.boton}>
                             <CustomText text="Get Started" fontSize={20} color="white" bold={true} textAling={"center"} />
                         </View>

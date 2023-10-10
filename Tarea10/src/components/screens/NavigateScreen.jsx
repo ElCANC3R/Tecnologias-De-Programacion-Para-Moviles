@@ -22,7 +22,7 @@ const NavigateScreen = () => {
     //Una funcion que cuando el usaurio este logeado, se muestre el tab de EstoyDentro y se oculte la de login y singup
     
     const handlePestañas = () => {
-        if(isLogged){
+        if(isLogged()){
             return (
                 <>
                 <Tab.Screen
