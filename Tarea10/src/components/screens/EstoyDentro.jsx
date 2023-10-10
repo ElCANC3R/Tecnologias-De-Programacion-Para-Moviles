@@ -5,8 +5,10 @@ import { Feather, AntDesign, MaterialIcons, SimpleLineIcons } from '@expo/vector
 import CustomText from '../CustomText';
 import CustomView from '../CustomView';
 import FoodCard from '../FoodCard';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const EstoyDentro = () => {
+  const { user, handleLogin, handleRegister, handleLogout, isLogged } = useAuthContext();
   return (
     <View style={styles.container}>
       {/*<View style={styles.header}>
@@ -18,6 +20,9 @@ const EstoyDentro = () => {
         </TouchableOpacity>
       </View>*/}
       <View style={{ paddingHorizontal: 25 }}>
+        <TouchableOpacity onPress={handleLogout}>
+          <CustomText text="Logout" fontSize={20} color="black" bold={true} />
+        </TouchableOpacity>
         <View style={{ marginTop: 35, marginBottom: 25 }}>
           <CustomText text="Store for fast food & etc." fontSize={25} color="black" bold={true} />
         </View>
