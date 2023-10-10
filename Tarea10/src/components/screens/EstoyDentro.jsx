@@ -9,14 +9,14 @@ import FoodCard from '../FoodCard';
 const EstoyDentro = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/*<View style={styles.header}>
         <TouchableOpacity >
           <AntDesign name="arrowleft" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity>
           <Feather name="bell" size={30} color="black" />
         </TouchableOpacity>
-      </View>
+      </View>*/}
       <View style={{ paddingHorizontal: 25 }}>
         <View style={{ marginTop: 35, marginBottom: 25 }}>
           <CustomText text="Store for fast food & etc." fontSize={25} color="black" bold={true} />
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 25,
-    marginTop: 20,
+    marginTop: 0,
   },
   input: {
     height: 50,

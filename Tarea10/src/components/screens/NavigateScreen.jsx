@@ -6,6 +6,7 @@ import Login from './Login';
 import SingUp from './SingUp';
 import EstoyDentro from './EstoyDentro';
 import { MaterialCommunityIcons, Entypo, FontAwesome5, AntDesign } from '@expo/vector-icons';
+import EstoyDentroNavigator from './EstoyDentroNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +53,7 @@ const NavigateScreen = () => {
                 />
                 <Tab.Screen
                     name="Dentro"
-                    component={EstoyDentro}
+                    component={EstoyDentroNavigator}
                     options={{
                         tabBarLabel: 'Estas dentro',
                         tabBarIcon: ({ color, size }) => (
