@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -19,9 +20,10 @@ const AuthContextProvider = ({ children }) => {
     },
   ]);
 
-  const handleLogin = (username, password) => {
+  const handleLogin = async (username, password) => {
     const user = users.find((user) => user.username === username);
     if (user && user.password === password) {
+      await AsyncStorage.setItem('user', username)
       setUser(user);
       return true;
     } else {
@@ -50,8 +52,9 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setUser(null);
+    await AsyncStorage.removeItem('user')
     return true;
   };
 
@@ -79,6 +82,22 @@ const AuthContextProvider = ({ children }) => {
       return false;
     }
   };
+
+  useEffect(() => {
+      const getUser = async () => {
+        try {
+            const CurrentUser = await AsyncStorage.getItem('user')
+            if (CurrentUser) {
+                setUser(CurrentUser)
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+    getUser();
+}, []);
+
 
   const values = {
     user,

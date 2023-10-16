@@ -22,9 +22,9 @@ const Login = ({ navigation }) => {
         setPassword(text);
     };
 
-    const handleLocalLogin = () => {
+    const handleLocalLogin =  () => {
         const loginResponse = handleLogin(userName, password);
-        if (loginResponse) {
+        if(loginResponse) {
             navigation.navigate("Home");
         } else {
             Alert.alert("Error", "Invalid credentials");

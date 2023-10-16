@@ -19,7 +19,7 @@ styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#55AFB1",
-        borderRadius: 15,
+        borderRadius: 16,
         height: 50,
         width: 100,
     },
