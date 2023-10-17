@@ -1,10 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useState, useEffect } from "react";
+import * as SecureStore from "expo-secure-store";
 
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -23,7 +25,8 @@ const AuthContextProvider = ({ children }) => {
   const handleLogin = async (username, password) => {
     const user = users.find((user) => user.username === username);
     if (user && user.password === password) {
-      await AsyncStorage.setItem('user', username)
+      //await AsyncStorage.setItem('user', username)
+      await SecureStore.setItemAsync("user", username);
       setUser(user);
       return true;
     } else {
@@ -54,7 +57,7 @@ const AuthContextProvider = ({ children }) => {
 
   const handleLogout = async () => {
     setUser(null);
-    await AsyncStorage.removeItem('user')
+    await SecureStore.deleteItemAsync("user");
     return true;
   };
 
@@ -84,20 +87,22 @@ const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-      const getUser = async () => {
-        try {
-            const CurrentUser = await AsyncStorage.getItem('user')
-            if (CurrentUser) {
-                setUser(CurrentUser)
-            }
+    const getUser = async () => {
+      try {
+        const CurrentUser = await SecureStore.getItemAsync("user");
+        if (CurrentUser) {
+          setUser(CurrentUser);
+          setLoading(false);
         }
-        catch (error) {
-            console.log(error)
+        else{
+          setLoading(false);
         }
-    }
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getUser();
-}, []);
-
+  }, []);
 
   const values = {
     user,
@@ -106,13 +111,10 @@ const AuthContextProvider = ({ children }) => {
     handleLogout,
     isLogged,
     handleUpdate,
+    loading,
   };
 
-    return (
-        <AuthContext.Provider value={ values }>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+};
 
 export { AuthContext, AuthContextProvider };
