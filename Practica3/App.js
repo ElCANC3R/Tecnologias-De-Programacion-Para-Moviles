@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Calculator from "./src/screens/Calculator";
+import Practica4 from "./src/screens/useMemo";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Calculator />
+      <Practica4 />
       <StatusBar style="auto" />
     </View>
   );

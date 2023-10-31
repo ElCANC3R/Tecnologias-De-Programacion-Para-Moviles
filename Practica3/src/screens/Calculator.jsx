@@ -12,8 +12,8 @@ const CALCULATOR_TYPES = {
 const initialState = {
   displayNumber: 0,
   operator: "",
-  prevNumber: 0,
-  currentNumber: 0,
+  prevNumber: "",
+  currentNumber: "",
   action: "",
   result: 0,
 };
