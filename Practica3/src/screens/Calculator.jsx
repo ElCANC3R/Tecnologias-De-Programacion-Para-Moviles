@@ -5,14 +5,17 @@ import Button from "../components/Button";
 const CALCULATOR_TYPES = {
   SELECT_NUMBER: "SELECT_NUMBER",
   SELECT_OPERATOR: "SELECT_OPERATOR",
+  SELECT_ACTION: "SELECT_ACTION",
   CALCULATE: "CALCULATE",
 };
 
 const initialState = {
-  displayNumber: 1,
+  displayNumber: 0,
   operator: "",
   prevNumber: 0,
   currentNumber: 0,
+  action: "",
+  result: 0,
 };
 
 const init = (initialState) => {
@@ -24,40 +27,89 @@ const reducer = (state, action) => {
     case CALCULATOR_TYPES.SELECT_NUMBER:
       return {
         ...state,
-        displayNumber: action.payload,
-        currentNumber: action.payload,
+        currentNumber:
+          state.currentNumber.toString() + action.payload.toString(),
+        result: 0,
+        displayNumber: 0,
       };
     case CALCULATOR_TYPES.SELECT_OPERATOR:
-      return {
-        ...state,
-        operator: action.payload,
-        prevNumber: state.currentNumber,
-      };
-    case CALCULATOR_TYPES.CALCULATE:
-      switch (state.operator) {
-        case "+":
+      if (state.result == 0) {
+        return {
+          ...state,
+          operator: action.payload,
+          prevNumber: state.currentNumber,
+          currentNumber: "",
+          displayNumber: 0,
+        };
+      }
+      else {
+        return {
+          ...state,
+          operator: action.payload,
+          prevNumber: state.result,
+          currentNumber: "",
+          result: 0,
+          displayNumber: 0,
+        };
+      }
+
+      case CALCULATOR_TYPES.CALCULATE:
+        switch (state.operator) {
+          case "+":
+            return {
+              ...state,
+              displayNumber: parseFloat(state.prevNumber) + parseFloat(state.currentNumber),
+              result: parseFloat(state.prevNumber) + parseFloat(state.currentNumber),
+            };
+          case "-":
+            return {
+              ...state,
+              displayNumber: parseFloat(state.prevNumber) - parseFloat(state.currentNumber),
+              result: parseFloat(state.prevNumber) - parseFloat(state.currentNumber),
+            };
+          case "x":
+            return {
+              ...state,
+              displayNumber: parseFloat(state.prevNumber) * parseFloat(state.currentNumber),
+              result: parseFloat(state.prevNumber) * parseFloat(state.currentNumber),
+            };
+          case "/":
+            return {
+              ...state,
+              displayNumber: parseFloat(state.prevNumber) / parseFloat(state.currentNumber),
+              result: parseFloat(state.prevNumber) / parseFloat(state.currentNumber),
+            };
+          case "%":
+            return {
+              ...state,
+              displayNumber: parseFloat(state.prevNumber) % parseFloat(state.currentNumber),
+              result: parseFloat(state.prevNumber) % parseFloat(state.currentNumber),
+            };
+          default:
+            return state;
+        }
+      
+    case CALCULATOR_TYPES.SELECT_ACTION:
+      switch (action.payload) {
+        case "C":
           return {
             ...state,
-            displayNumber: state.prevNumber + state.currentNumber,
-            currentNumber: state.prevNumber + state.currentNumber,
+            displayNumber: 0,
+            operator: "",
+            prevNumber: "",
+            currentNumber: "",
           };
-        case "-":
+        case "E":
           return {
             ...state,
-            displayNumber: state.prevNumber - state.currentNumber,
-            currentNumber: state.prevNumber - state.currentNumber,
+            displayNumber: 0,
+            currentNumber: "",
           };
-        case "x":
+        case "R":
           return {
             ...state,
-            displayNumber: state.prevNumber * state.currentNumber,
-            currentNumber: state.prevNumber * state.currentNumber,
-          };
-        case "/":
-          return {
-            ...state,
-            displayNumber: state.prevNumber / state.currentNumber,
-            currentNumber: state.prevNumber / state.currentNumber,
+            displayNumber: state.displayNumber * -1,
+            currentNumber: state.currentNumber * -1,
           };
         default:
           return state;
@@ -90,9 +142,51 @@ const Calculator = () => {
     });
   };
 
+  const handleAction = (action) => {
+    dispatch({
+      type: CALCULATOR_TYPES.SELECT_ACTION,
+      payload: action,
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{state.displayNumber}</Text>
+      <View style={styles.containerTexto}>
+        <Text style={styles.text}>
+          {state.prevNumber + state.operator + state.currentNumber}
+        </Text>
+        <Text style={styles.textResult}>{"= " + state.displayNumber}</Text>
+      </View>
+      <View style={styles.row}>
+        <Button
+          text={"C"}
+          role={"operator"}
+          onPress={() => {
+            handleAction("C");
+          }}
+        />
+        <Button
+          text={"E"}
+          role={"operator"}
+          onPress={() => {
+            handleAction("E");
+          }}
+        />
+        <Button
+          text={"%"}
+          role={"operator"}
+          onPress={() => {
+            handleSelectOperator("%");
+          }}
+        />
+        <Button
+          text={"/"}
+          role={"operator"}
+          onPress={() => {
+            handleSelectOperator("/");
+          }}
+        />
+      </View>
       <View style={styles.row}>
         <Button
           text={7}
@@ -116,10 +210,10 @@ const Calculator = () => {
           }}
         />
         <Button
-          text={"/"}
+          text={"X"}
           role={"operator"}
           onPress={() => {
-            handleSelectOperator("/");
+            handleSelectOperator("x");
           }}
         />
       </View>
@@ -146,10 +240,10 @@ const Calculator = () => {
           }}
         />
         <Button
-          text={"x"}
+          text={"-"}
           role={"operator"}
           onPress={() => {
-            handleSelectOperator("x");
+            handleSelectOperator("-");
           }}
         />
       </View>
@@ -176,14 +270,21 @@ const Calculator = () => {
           }}
         />
         <Button
-          text={"-"}
+          text={"+"}
           role={"operator"}
           onPress={() => {
-            handleSelectOperator("-");
+            handleSelectOperator("+");
           }}
         />
       </View>
       <View style={styles.row}>
+        <Button
+          text={"R"}
+          role={"operator"}
+          onPress={() => {
+            handleAction("R");
+          }}
+        />
         <Button
           text={0}
           role={"number"}
@@ -192,10 +293,10 @@ const Calculator = () => {
           }}
         />
         <Button
-          text={"+"}
-          role={"operator"}
+          text={"."}
+          role={"number"}
           onPress={() => {
-            handleSelectOperator("+");
+            handleSelectNumber(".");
           }}
         />
         <Button text={"="} role={"operator"} onPress={handleCalculate} />
@@ -209,19 +310,33 @@ export default Calculator;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#000000",
+    backgroundColor: "#000000",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     gap: 10,
   },
   text: {
-    color: "#000000",
+    color: "#ffff",
+    fontSize: 30,
+  },
+  textResult: {
+    color: "#ffff",
     fontSize: 50,
   },
   row: {
     display: "flex",
     flexDirection: "row",
     gap: 10,
+  },
+  containerTexto: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    width: "100%",
+    height: "20%",
+    backgroundColor: "#000000",
+    borderRadius: 10,
+    padding: 20,
   },
 });

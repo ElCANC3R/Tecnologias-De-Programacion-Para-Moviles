@@ -19,22 +19,23 @@ export default Button;
 
 const styles = StyleSheet.create({
   container: {
-    width: 70,
-    height: 70,
-    borderRadius: 15,
+    width: 75,
+    height: 75,
+    borderRadius: 35,
     backgroundColor: "#cc00ff",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
   numberContainer: {
-    backgroundColor: "#cc00ff",
+    backgroundColor: "gray",
   },
   operatorContainer: {
-    backgroundColor: "#ff0066",
+    backgroundColor: "#D75731",
   },
   text: {
     color: "white",
-    fontSize: 25,
+    fontSize: 30,
+    
   },
 });
